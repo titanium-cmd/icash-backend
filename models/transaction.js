@@ -23,3 +23,6 @@ const transactionSchema = new mongoose.Schema({
     default: false
   },
 });
+
+const transaction = mongoose.model('trnsaction', transactionSchema);
+module.exports = transaction;

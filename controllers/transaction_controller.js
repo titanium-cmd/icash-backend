@@ -1,13 +1,31 @@
-const addTransaction = (req, res) => {
-  
+const Transaction = require('../models/transaction');
+
+const addTransaction = async (req, res) => {
+  try {
+    await Transaction.create(req.body);
+    res.status(200).json({success: true, message: 'Transaction created'});
+  } catch (error) {
+    res.status(400).json({success: false, message: 'Transaction not created '+error.message});
+  }
 }
 
-const getAllTransaction = (req, res) => {
-
+const getAllTransaction = async (req, res) => {
+  try {
+    const transactions = await Transaction.find();
+    res.status(200).json({success: true, transactions});
+  } catch (error) {
+    res.status(400).json({success: false, message: 'Cant get trnsactions '+error.message})
+  }
 }
 
-const getTransactionById = (req, res) => {
-
+const getTransactionById = async (req, res) => {
+  const { transaction_id } = req.params;
+  try {
+    const transaction = await Transaction.find({_id: transaction_id});
+    res.status(200).json({success: true, transaction});
+  } catch (error) {
+    res.status(400).json({success: false, message: 'Cant get trnsaction '+error.message})
+  }
 }
 
 module.exports = {
