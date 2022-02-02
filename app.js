@@ -9,6 +9,7 @@ connectDB();
 app.use(logger('dev'));
 app.use(express.json());
 
+app.get('/', (req, res)=> res.status(200).json({success: true, message: 'Welcome to iCash backend'}));
 app.use('/api/transaction', require('./routes/transaction_routes'));
 
 // catch 404 and forward to error handler
