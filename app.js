@@ -1,7 +1,10 @@
 const createError = require('http-errors');
 const express = require('express');
 const logger = require('morgan');
+const connectDB = require('./db');
 const app = express();
+
+connectDB();
 
 app.use(logger('dev'));
 app.use(express.json());
