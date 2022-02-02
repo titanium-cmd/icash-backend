@@ -1,12 +1,15 @@
 const createError = require('http-errors');
 const express = require('express');
 const logger = require('morgan');
+const connectDB = require('./db');
 const app = express();
+
+connectDB();
 
 app.use(logger('dev'));
 app.use(express.json());
 
-app.use('/users', require('./routes/users'));
+app.use('/api/transaction', require('./routes/transaction_routes'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
