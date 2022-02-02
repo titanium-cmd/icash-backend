@@ -14,7 +14,7 @@ const getAllTransaction = async (req, res) => {
     const transactions = await Transaction.find();
     res.status(200).json({success: true, transactions});
   } catch (error) {
-    res.status(400).json({success: false, message: 'Cant get trnsactions '+error.message})
+    res.status(400).json({success: false, message: 'Cant get transactions '+error.message})
   }
 }
 
@@ -24,7 +24,7 @@ const getTransactionById = async (req, res) => {
     const transaction = await Transaction.find({_id: transaction_id});
     res.status(200).json({success: true, transaction});
   } catch (error) {
-    res.status(400).json({success: false, message: 'Cant get trnsaction '+error.message})
+    res.status(400).json({success: false, message: 'Cant get transaction '+error.message})
   }
 }
 
