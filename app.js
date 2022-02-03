@@ -2,11 +2,13 @@ const createError = require('http-errors');
 const express = require('express');
 const logger = require('morgan');
 const connectDB = require('./db');
+const cors = require('cors');
 const app = express();
 
 connectDB();
 
 app.use(logger('dev'));
+app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res)=> res.status(200).json({success: true, message: 'Welcome to iCash backend'}));
