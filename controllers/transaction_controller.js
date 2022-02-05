@@ -28,6 +28,16 @@ const getTransactionById = async (req, res) => {
   }
 }
 
+const deleteTransactionById = async (req, res) => {
+  const { transaction_id } = req.params;
+  try {
+    await Transaction.findByIdAndDelete({_id: transaction_id});
+    res.status(200).json({success: true, message:'Transaction deleted successfully'});
+  } catch (error) {
+    res.status(400).json({success: false, message: 'Cant delete transaction '+error.message})
+  }
+}
+
 module.exports = {
-  addTransaction, getAllTransaction, getTransactionById
+  addTransaction, getAllTransaction, getTransactionById, deleteTransactionById
 }
